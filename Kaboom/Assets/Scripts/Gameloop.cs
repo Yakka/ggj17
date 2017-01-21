@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gameloop : MonoBehaviour {
 
@@ -11,6 +12,13 @@ public class Gameloop : MonoBehaviour {
     };
 
     public GameState state = GameState.BombMaking;
+    public int money = 100;
+    public Text moneyUI;
+    public Bomb bomb;
+
+    public void Update() {
+        moneyUI.text = money.ToString()+"$";
+    }
 
     public void NextGameState() {
         switch(state) {
@@ -24,5 +32,9 @@ public class Gameloop : MonoBehaviour {
                 state = GameState.BombMaking;
                 break;
         }
+    }
+
+    public void LaunchBomb() {
+        money -= bomb.GetTotalCost();
     }
 }
