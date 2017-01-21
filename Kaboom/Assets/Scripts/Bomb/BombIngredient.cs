@@ -30,7 +30,7 @@ public class BombIngredient : MonoBehaviour {
 
     public int GetFinalEffectValue(EffectType _type) {
         int factor = effectsDictionary[_type].reversed ? -1 : 1;
-        int effectValue = effectsDictionary[_type].valuePerUnit * quantity * factor;
+        int effectValue = effectsDictionary[_type].valuePerUnit * quantity * factor + effectsDictionary[_type].baseValue;
         return effectValue;
     }
 
