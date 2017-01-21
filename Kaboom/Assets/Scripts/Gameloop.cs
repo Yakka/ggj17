@@ -39,6 +39,6 @@ public class Gameloop : MonoBehaviour {
     }
 
     public void LaunchBomb() {
-        mushroom.Kaboom();
+        mushroom.DisplayMushroom();
     }
 }
