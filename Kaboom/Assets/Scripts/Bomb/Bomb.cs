@@ -28,9 +28,8 @@ public class Bomb : MonoBehaviour {
         bombIngredients.AddRange(GetComponentsInChildren<BombIngredient>());
     }
     
-    public Dictionary<EffectType, EffectScale> GetAllFinalEffects() {
+    public Dictionary<EffectType, int> GetAllFinalEffects() {
         Dictionary<EffectType, int> allEffects = new Dictionary<EffectType, int>();
-        Dictionary<EffectType, EffectScale> allEffectsScales = new Dictionary<EffectType, EffectScale>();
         // Initialize dictionary
         for(int i = 0; i < (int)EffectType.Length; i++) {
             allEffects.Add((EffectType)i, 0);
@@ -42,17 +41,7 @@ public class Bomb : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < (int)EffectType.Length; i++) {
-            // TODO: add small effects
-            if(allEffects[(EffectType)i] == 0) {
-                allEffectsScales[(EffectType)i] = EffectScale.None;
-            } else {
-                allEffectsScales[(EffectType)i] = EffectScale.Big;
-            }
-
-        }
-
-        return allEffectsScales;
+        return allEffects;
     }
 
     public int GetTotalCost() {

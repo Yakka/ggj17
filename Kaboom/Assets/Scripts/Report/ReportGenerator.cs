@@ -15,17 +15,21 @@ public class ReportGenerator : MonoBehaviour {
     }
 
     private string GenerateReport() {
-        Dictionary<EffectType, EffectScale> dictionary = bomb.GetAllFinalEffects();
+        Dictionary<EffectType, int> allEffects = bomb.GetAllFinalEffects();
         string report = string.Empty;
         foreach(EffectData data in effectDataList) {
-            switch(dictionary[data.type]) {
-                case EffectScale.None:
-                    report += data.textNone + "\n";
-                    break;
-                case EffectScale.Big:
-                    report += data.textBig + "\n";
-                    break;
-            }// TODO faire le small
+            // Scale: big
+            if(allEffects[data.type] > data.valueBig) {
+                report += data.textBig + "\n";
+            }
+            // Scale: small
+            else if(allEffects[data.type] > data.valueSmall) {
+                report += data.textSmall + "\n";
+            }
+            // scale: none
+            else {
+                report += data.textNone + "\n";
+            }
         }
         return report;
     }
