@@ -22,10 +22,10 @@ public class ReportGenerator : MonoBehaviour {
                 case EffectScale.None:
                     report += data.textNone + "\n";
                     break;
-                case EffectScale.Small:
+                case EffectScale.Big:
                     report += data.textBig + "\n";
                     break;
-            }
+            }// TODO faire le small
         }
         return report;
     }

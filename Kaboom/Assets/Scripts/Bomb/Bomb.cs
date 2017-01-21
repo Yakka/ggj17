@@ -5,16 +5,18 @@ using System.Linq;
 using UnityEngine;
 
 public enum EffectType {
-    Deads,
+    Deads = 0,
     Radioactivity,
     Area,
-    LifeTime
+    LifeTime,
+    Length
 }
 
 public enum EffectScale {
-    None,
+    None = 0,
     Small,
-    Big
+    Big,
+    Length
 }
 
 public class Bomb : MonoBehaviour {
@@ -30,8 +32,8 @@ public class Bomb : MonoBehaviour {
         Dictionary<EffectType, int> allEffects = new Dictionary<EffectType, int>();
         Dictionary<EffectType, EffectScale> allEffectsScales = new Dictionary<EffectType, EffectScale>();
         // Initialize dictionary
-        foreach (EffectType type in Enum.GetValues(typeof(EffectType)).Cast<EffectType>()) {
-            allEffects.Add(type, 0);
+        for(int i = 0; i < (int)EffectType.Length; i++) {
+            allEffects.Add((EffectType)i, 0);
         }
         // Add the real values of the dictionary
         foreach (BombIngredient bombIngredient in bombIngredients) {
@@ -40,12 +42,12 @@ public class Bomb : MonoBehaviour {
             }
         }
 
-        foreach (EffectType type in Enum.GetValues(typeof(EffectType)).Cast<EffectType>()) {
+        for (int i = 0; i < (int)EffectType.Length; i++) {
             // TODO: add small effects
-            if(allEffects[type] == 0) {
-                allEffectsScales[type] = EffectScale.None;
+            if(allEffects[(EffectType)i] == 0) {
+                allEffectsScales[(EffectType)i] = EffectScale.None;
             } else {
-                allEffectsScales[type] = EffectScale.Big;
+                allEffectsScales[(EffectType)i] = EffectScale.Big;
             }
 
         }
