@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 610e70efc6687d34aa52e716b4af7628
+timeCreated: 1485024556
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FORQUE
+  fontNames:
+  - FORQUE
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

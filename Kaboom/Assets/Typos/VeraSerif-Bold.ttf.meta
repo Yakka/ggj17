@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a314e7de3a56e1748b3a35292ec1562a
+timeCreated: 1485024556
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bitstream Vera Serif
+  fontNames:
+  - Bitstream Vera Serif
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 14a1383467a1bd5419a8dba6919d9655, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
