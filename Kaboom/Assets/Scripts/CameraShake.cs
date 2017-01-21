@@ -9,7 +9,7 @@ public class CameraShake : MonoBehaviour {
     private const float defaultIntensity = 0.1f;
     private const float defaultTime = 0.5f;
     private bool isShaking = false;
-	
+	public float intensityFriction = 0f;
 	// Update is called once per frame
 	void Update () {
         if(isShaking) {
@@ -21,16 +21,26 @@ public class CameraShake : MonoBehaviour {
                 Camera.main.transform.position = Vector3.back * 10;
                 isShaking = false;
             }
+            intensity = Mathf.Lerp(intensity, 0f, intensityFriction);
         }
-        
         if(Input.anyKey) {
             Shake();
         }
 	}
 
-    public void Shake(float _time = defaultTime, float _intensity = defaultIntensity) {
+    public void Shake(float _time, float _intensity = defaultIntensity) {
         timer = _time;
         intensity = _intensity;
         isShaking = true;
+    }
+
+    public void Shake(float _intensity = defaultIntensity) {
+        timer = float.PositiveInfinity;
+        intensity = _intensity;
+        isShaking = true;
+    }
+
+    public void StopShake() {
+        isShaking = false;
     }
 }

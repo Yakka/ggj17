@@ -1,41 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Mushroom : MonoBehaviour {
-    private enum MushroomState {Counting = 0, Exploding, Length }
-    private MushroomState state;
-    private SpriteRenderer sprite;
-    private Animator animator;
-    private float timer;
+
     private AudioSource audioSource;
     
     public void Start() {
-        sprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        sprite.enabled = false;
-        timer = 0f;
-        state = MushroomState.Exploding;
         audioSource.Play();
     }
 
-    public void Update() {
-        timer += Time.deltaTime;
-        if(timer > 2) {
-            DisplayMushroom();
-        }
-    }
-
-    public void DisplayMushroom() {
-        sprite.enabled = true;
-        animator.SetBool("IsLaunched", true);
-        
-    }
-
     public void SpecialEffects() {
-        Camera.main.GetComponent<CameraShake>().Shake(5);
+        Camera.main.GetComponent<CameraShake>().Shake();
     }
     
+    public void EndScene() {
+        SceneManager.LoadScene("bombMaking");
+    }
 }
