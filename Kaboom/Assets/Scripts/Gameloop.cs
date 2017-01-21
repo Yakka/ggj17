@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +16,7 @@ public class Gameloop : MonoBehaviour {
     public Bomb bomb;
 
     public void Update() {
-        moneyUI.text = money.ToString()+"$";
+        moneyUI.text = "<color=#7F4040>Mission budget :</color> <size=36>" + money.ToString() + "$</size>";
     }
 
     public void NextGameState() {
