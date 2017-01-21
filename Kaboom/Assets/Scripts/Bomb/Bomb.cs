@@ -4,6 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum EffectType {
+    Deads,
+    Radioactivity,
+    Area,
+    LifeTime
+}
+
+public enum EffectScale {
+    None,
+    Small,
+    Big
+}
+
 public class Bomb : MonoBehaviour {
 
     public List<BombIngredient> bombIngredients = new List<BombIngredient>();
@@ -13,10 +26,11 @@ public class Bomb : MonoBehaviour {
         bombIngredients.AddRange(GetComponentsInChildren<BombIngredient>());
     }
     
-    public Dictionary<EffectType, int> GetAllFinalEffects() {
+    public Dictionary<EffectType, EffectScale> GetAllFinalEffects() {
         Dictionary<EffectType, int> allEffects = new Dictionary<EffectType, int>();
+        Dictionary<EffectType, EffectScale> allEffectsScales = new Dictionary<EffectType, EffectScale>();
         // Initialize dictionary
-        foreach(EffectType type in Enum.GetValues(typeof(EffectType)).Cast<EffectType>()) {
+        foreach (EffectType type in Enum.GetValues(typeof(EffectType)).Cast<EffectType>()) {
             allEffects.Add(type, 0);
         }
         // Add the real values of the dictionary
@@ -25,8 +39,18 @@ public class Bomb : MonoBehaviour {
                 allEffects[type] += bombIngredient.GetFinalEffectValue(type);
             }
         }
-        
-        return allEffects;
+
+        foreach (EffectType type in Enum.GetValues(typeof(EffectType)).Cast<EffectType>()) {
+            // TODO: add small effects
+            if(allEffects[type] == 0) {
+                allEffectsScales[type] = EffectScale.None;
+            } else {
+                allEffectsScales[type] = EffectScale.Big;
+            }
+
+        }
+
+        return allEffectsScales;
     }
 
     public int GetTotalCost() {

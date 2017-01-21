@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public enum EffectType {
-    Radiance,
-    Deflagration
-}
-
 public class BombIngredient : MonoBehaviour {
 
     public string name; //Name of the component (UI)
