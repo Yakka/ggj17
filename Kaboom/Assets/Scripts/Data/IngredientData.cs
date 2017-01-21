@@ -12,6 +12,6 @@ public class IngredientData : ScriptableObject {
     public int moneyPerUnit; //Dollars
 
     [System.Serializable]
-    public struct Effect { public EffectType type; public int valuePerUnit; public bool reversed; };
+    public struct Effect { public EffectType type; public int valuePerUnit; public bool reversed; public int baseValue; };
     public List<Effect> effectsList = new List<Effect>(); //Used to set the game data
 }

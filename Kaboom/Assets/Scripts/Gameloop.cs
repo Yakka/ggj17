@@ -16,7 +16,6 @@ public class Gameloop : MonoBehaviour {
     public Canvas canvas;
     public Text moneyUI;
     public Bomb bomb;
-    public Mushroom mushroom;
 
     public void Update() {
         moneyUI.text = money.ToString()+"$";
@@ -38,7 +37,5 @@ public class Gameloop : MonoBehaviour {
         }
     }
 
-    public void LaunchBomb() {
-        mushroom.Kaboom();
-    }
+    
 }
