@@ -41,6 +41,10 @@ public class Bomb : MonoBehaviour {
             }
         }
 
+        for (int i = 0; i < (int)EffectType.Length; i++) {
+            Debug.Log(allEffects[(EffectType)i]);
+        }
+
         return allEffects;
     }
 

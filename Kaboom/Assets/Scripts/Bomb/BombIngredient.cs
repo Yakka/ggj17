@@ -8,11 +8,11 @@ public class BombIngredient : MonoBehaviour {
     public IngredientData ingredientData;
 
     private int quantity;   //Total amount of this component (gameplay)
-    private Dictionary<EffectType, int> effectsDictionary = new Dictionary<EffectType, int>();
+    private Dictionary<EffectType, IngredientData.Effect> effectsDictionary = new Dictionary<EffectType, IngredientData.Effect>();
 
     public void Start() {
         foreach(IngredientData.Effect effect in ingredientData.effectsList) {
-            effectsDictionary.Add(effect.type, effect.valuePerUnit);
+            effectsDictionary.Add(effect.type, effect);
         }
     }
 
@@ -29,7 +29,8 @@ public class BombIngredient : MonoBehaviour {
     }
 
     public int GetFinalEffectValue(EffectType _type) {
-        int effectValue = effectsDictionary[_type] * quantity;
+        int factor = effectsDictionary[_type].reversed ? -1 : 1;
+        int effectValue = effectsDictionary[_type].valuePerUnit * quantity * factor;
         return effectValue;
     }
 
