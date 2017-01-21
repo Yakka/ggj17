@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Gameloop : MonoBehaviour {
 
+    static public Gameloop instance = null;
+
 	public enum GameState {
         BombMaking,
         BombTesting,
-        Report
+        Length
     };
 
     public GameState state = GameState.BombMaking;
@@ -15,7 +18,16 @@ public class Gameloop : MonoBehaviour {
     public Text moneyUI;
     public Bomb bomb;
 
-    public void Update() {
+    void Awake() {
+        if(instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
+    void Update() {
         moneyUI.text = "<color=#7F4040>Mission budget :</color> <size=36>" + money.ToString() + "$</size>";
     }
 
@@ -24,13 +36,11 @@ public class Gameloop : MonoBehaviour {
             case GameState.BombMaking:
                 state = GameState.BombTesting;
                 money -= bomb.GetTotalCost();
-                canvas.enabled = false;
+                SceneManager.LoadScene(1);
                 break;
             case GameState.BombTesting:
-                state = GameState.Report;
-                break;
-            case GameState.Report:
                 state = GameState.BombMaking;
+                SceneManager.LoadScene(0);
                 break;
         }
     }

@@ -22,9 +22,20 @@ public enum EffectScale {
 public class Bomb : MonoBehaviour {
 
     public List<BombIngredient> bombIngredients = new List<BombIngredient>();
+
+    static Bomb instance = null;
   
 
-    public void Start() {
+    void Awake() {
+        if(instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start() {
         bombIngredients.AddRange(GetComponentsInChildren<BombIngredient>());
     }
     

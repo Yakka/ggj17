@@ -18,6 +18,6 @@ public class Mushroom : MonoBehaviour {
     }
     
     public void EndScene() {
-        SceneManager.LoadScene("bombMaking");
+        Gameloop.instance.NextGameState();
     }
 }
