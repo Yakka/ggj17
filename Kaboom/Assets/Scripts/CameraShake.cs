@@ -10,12 +10,19 @@ public class CameraShake : MonoBehaviour {
     private const float defaultTime = 0.5f;
     private bool isShaking = false;
 	public float intensityFriction = 0f;
+    private bool hasShaked = false;
 	// Update is called once per frame
 	void Update () {
         if(isShaking) {
             timer -= Time.deltaTime;
             if (timer > 0f) {
-                Camera.main.transform.Translate(Random.Range(-intensity, intensity), Random.Range(-intensity, intensity), 0f);
+                if(hasShaked) {
+                    hasShaked = false;
+                    Camera.main.transform.position = Vector3.back * 10;
+                } else {
+                    Camera.main.transform.Translate(Random.Range(-intensity, intensity), Random.Range(-intensity, intensity), 0f);
+                    hasShaked = true;
+                }
             }
             else {
                 Camera.main.transform.position = Vector3.back * 10;
