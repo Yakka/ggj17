@@ -29,7 +29,11 @@ public class Bomb : MonoBehaviour {
         return allEffects;
     }
 
-    public void debug() {
-        Debug.Log(GetAllFinalEffects()[EffectType.Radiance]);
+    public int GetTotalCost() {
+        int value = 0;
+        foreach(BombIngredient ingredient in bombIngredients) {
+            value += ingredient.GetCost();
+        }
+        return value;
     }
 }

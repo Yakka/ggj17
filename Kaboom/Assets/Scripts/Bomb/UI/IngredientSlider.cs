@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-[RequireComponent(typeof(UnityEngine.UI.Slider))]
+[RequireComponent(typeof(Slider))]
 public class IngredientSlider : MonoBehaviour {
 
     public BombIngredient bombIngredient;

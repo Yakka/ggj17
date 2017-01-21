@@ -15,6 +15,7 @@ public class BombIngredient : MonoBehaviour {
     public int delta;   //Amount of this component per quantity (UI)
     public int min;     //Minimum value (gameplay)
     public int max;     //Maximum value (gameplay)
+    public int moneyPerUnit; //Dollars
     private int quantity;   //Total amount of this component (gameplay)
 
     [System.Serializable]
@@ -53,6 +54,10 @@ public class BombIngredient : MonoBehaviour {
             }
         }
         return typesList;
+    }
+
+    public int GetCost() {
+        return GetGameplayQuantity() * moneyPerUnit;
     }
 
 }
