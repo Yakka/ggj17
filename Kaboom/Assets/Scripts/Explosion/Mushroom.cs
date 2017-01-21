@@ -9,13 +9,16 @@ public class Mushroom : MonoBehaviour {
     private SpriteRenderer sprite;
     private Animator animator;
     private float timer;
+    private AudioSource audioSource;
     
     public void Start() {
         sprite = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         sprite.enabled = false;
         timer = 0f;
         state = MushroomState.Exploding;
+        audioSource.Play();
     }
 
     public void Update() {
@@ -28,9 +31,11 @@ public class Mushroom : MonoBehaviour {
     public void DisplayMushroom() {
         sprite.enabled = true;
         animator.SetBool("IsLaunched", true);
+        
     }
 
     public void SpecialEffects() {
         Camera.main.GetComponent<CameraShake>().Shake(5);
     }
+    
 }
