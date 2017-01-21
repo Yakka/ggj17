@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EffectName",menuName ="Data/Effects", order =1)]
+[CreateAssetMenu(fileName = "EffectName",menuName ="Data/Effects", order = 2)]
 public class EffectData: ScriptableObject {
     public EffectType type;
     public string textNone;
