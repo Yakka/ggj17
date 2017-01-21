@@ -6,6 +6,8 @@ using UnityEngine;
 public class EffectData: ScriptableObject {
     public EffectType type;
     public string textNone;
+    public int valueSmall;
     public string textSmall;
+    public int valueBig;
     public string textBig;
 }

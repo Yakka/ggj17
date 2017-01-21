@@ -5,28 +5,19 @@ using UnityEngine;
 
 public class BombIngredient : MonoBehaviour {
 
-    public string name; //Name of the component (UI)
-    public string unit; //Unit name (UI)
-    public int delta;   //Amount of this component per quantity (UI)
-    public int min;     //Minimum value (gameplay)
-    public int max;     //Maximum value (gameplay)
-    public int moneyPerUnit; //Dollars
+    public IngredientData ingredientData;
+
     private int quantity;   //Total amount of this component (gameplay)
-
-    [System.Serializable]
-    public struct Effect { public EffectType type; public int valuePerUnit; };
-    public List<Effect> effectsList = new List<Effect>(); //Used to set the game data
-
     private Dictionary<EffectType, int> effectsDictionary = new Dictionary<EffectType, int>();
 
     public void Start() {
-        foreach(Effect effect in effectsList) {
+        foreach(IngredientData.Effect effect in ingredientData.effectsList) {
             effectsDictionary.Add(effect.type, effect.valuePerUnit);
         }
     }
 
     public void SetGameplayQuantity(float _quantity) {
-        quantity = Mathf.Clamp((int)_quantity, min, max);
+        quantity = Mathf.Clamp((int)_quantity, ingredientData.min, ingredientData.max);
     }
 
     public int GetGameplayQuantity() {
@@ -34,7 +25,7 @@ public class BombIngredient : MonoBehaviour {
     }
 
     public int GetFullQuantity() {
-        return quantity * delta;
+        return quantity * ingredientData.delta;
     }
 
     public int GetFinalEffectValue(EffectType _type) {
@@ -44,7 +35,7 @@ public class BombIngredient : MonoBehaviour {
 
     public List<EffectType> GetAllTypes() {
         List<EffectType> typesList = new List<EffectType>();
-        foreach(Effect effect in effectsList) {
+        foreach(IngredientData.Effect effect in ingredientData.effectsList) {
             if(!typesList.Contains(effect.type)) {
                 typesList.Add(effect.type);
             }
@@ -53,7 +44,7 @@ public class BombIngredient : MonoBehaviour {
     }
 
     public int GetCost() {
-        return GetGameplayQuantity() * moneyPerUnit;
+        return GetGameplayQuantity() * ingredientData.moneyPerUnit;
     }
 
 }

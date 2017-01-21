@@ -12,8 +12,8 @@ public class IngredientSlider : MonoBehaviour {
     public void Start() {
         slider = GetComponent<Slider>();
         if(bombIngredient != null) {
-            slider.minValue = bombIngredient.min;
-            slider.maxValue = bombIngredient.max;
+            slider.minValue = bombIngredient.ingredientData.min;
+            slider.maxValue = bombIngredient.ingredientData.max;
         } else {
             Debug.LogError("Error: bombIngredient null reference. This slider is not linked to a bomb ingredient.");
         }
