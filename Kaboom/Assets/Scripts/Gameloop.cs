@@ -13,8 +13,10 @@ public class Gameloop : MonoBehaviour {
 
     public GameState state = GameState.BombMaking;
     public int money = 100;
+    public Canvas canvas;
     public Text moneyUI;
     public Bomb bomb;
+    public Mushroom mushroom;
 
     public void Update() {
         moneyUI.text = money.ToString()+"$";
@@ -24,6 +26,8 @@ public class Gameloop : MonoBehaviour {
         switch(state) {
             case GameState.BombMaking:
                 state = GameState.BombTesting;
+                money -= bomb.GetTotalCost();
+                canvas.enabled = false;
                 break;
             case GameState.BombTesting:
                 state = GameState.Report;
@@ -35,6 +39,6 @@ public class Gameloop : MonoBehaviour {
     }
 
     public void LaunchBomb() {
-        money -= bomb.GetTotalCost();
+        mushroom.Kaboom();
     }
 }
