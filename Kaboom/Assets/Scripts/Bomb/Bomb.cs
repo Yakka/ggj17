@@ -23,7 +23,7 @@ public class Bomb : MonoBehaviour {
 
     public List<BombIngredient> bombIngredients = new List<BombIngredient>();
 
-    static Bomb instance = null;
+    static public Bomb instance = null;
   
 
     void Awake() {

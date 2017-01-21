@@ -14,8 +14,6 @@ public class Gameloop : MonoBehaviour {
 
     public GameState state = GameState.BombMaking;
     public int money = 100;
-    public Canvas canvas;
-    public Text moneyUI;
     public Bomb bomb;
 
     void Awake() {
@@ -25,10 +23,6 @@ public class Gameloop : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
-    }
-
-    void Update() {
-        moneyUI.text = "<color=#7F4040>Mission budget :</color> <size=36>" + money.ToString() + "$</size>";
     }
 
     public void NextGameState() {

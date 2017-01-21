@@ -30,9 +30,6 @@ public class CameraShake : MonoBehaviour {
             }
             intensity = Mathf.Lerp(intensity, 0f, intensityFriction);
         }
-        if(Input.anyKey) {
-            Shake();
-        }
 	}
 
     public void Shake(float _time, float _intensity = defaultIntensity) {
