@@ -8,7 +8,7 @@ public enum EffectType {
     Deads = 0,
     Radioactivity,
     Area,
-    LifeTime,
+    Destruction,
     Length
 }
 
