@@ -42,9 +42,17 @@ public class BombIngredient : MonoBehaviour {
     }
 
     public int GetFinalEffectValue(EffectType _type) {
-        int value = 0;
-        effectsDictionary.TryGetValue(_type, out value);
-        return value *= quantity;
+        return effectsDictionary[_type] *= quantity;
+    }
+
+    public List<EffectType> GetAllTypes() {
+        List<EffectType> typesList = new List<EffectType>();
+        foreach(Effect effect in effectsList) {
+            if(!typesList.Contains(effect.type)) {
+                typesList.Add(effect.type);
+            }
+        }
+        return typesList;
     }
 
 }
