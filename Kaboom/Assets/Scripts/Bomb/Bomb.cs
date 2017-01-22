@@ -37,6 +37,7 @@ public class Bomb : MonoBehaviour {
 
     void Start() {
         bombIngredients.AddRange(GetComponentsInChildren<BombIngredient>());
+        Debug.Log("p");
     }
     
     public Dictionary<EffectType, int> GetAllFinalEffects() {
@@ -46,7 +47,7 @@ public class Bomb : MonoBehaviour {
             allEffects.Add((EffectType)i, 0);
         }
         // Add the real values of the dictionary
-        foreach (BombIngredient bombIngredient in bombIngredients) {
+        foreach (BombIngredient bombIngredient in GetComponentsInChildren<BombIngredient>()) {
             foreach(EffectType type in bombIngredient.GetAllTypes()) {
                 allEffects[type] += bombIngredient.GetFinalEffectValue(type);
             }
