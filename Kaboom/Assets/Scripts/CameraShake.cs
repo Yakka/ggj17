@@ -32,13 +32,19 @@ public class CameraShake : MonoBehaviour {
         }
 	}
 
+    public void Shake(float _time) {
+        timer = _time;
+        intensity = defaultIntensity;
+        isShaking = true;
+    }
+
     public void Shake(float _time, float _intensity = defaultIntensity) {
         timer = _time;
         intensity = _intensity;
         isShaking = true;
     }
 
-    public void Shake(float _intensity = defaultIntensity) {
+    public void InfiniteShake(float _intensity = defaultIntensity) {
         timer = float.PositiveInfinity;
         intensity = _intensity;
         isShaking = true;

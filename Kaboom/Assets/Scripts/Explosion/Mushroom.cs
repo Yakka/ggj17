@@ -14,7 +14,7 @@ public class Mushroom : MonoBehaviour {
     }
 
     public void SpecialEffects() {
-        Camera.main.GetComponent<CameraShake>().Shake();
+        Camera.main.GetComponent<CameraShake>().InfiniteShake();
     }
     
     public void EndScene() {
