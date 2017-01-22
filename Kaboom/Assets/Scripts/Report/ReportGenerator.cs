@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class ReportGenerator : MonoBehaviour {
 
-    public List<EffectData> effectDataList = new List<EffectData>();
     public Bomb bomb;
     private Text textUI;
 
@@ -17,7 +16,7 @@ public class ReportGenerator : MonoBehaviour {
     private string GenerateReport() {
         Dictionary<EffectType, int> allEffects = bomb.GetAllFinalEffects();
         string report = string.Empty;
-        foreach(EffectData data in effectDataList) {
+        foreach(EffectData data in Bomb.instance.effectDataList) {
             // Scale: big
             if(allEffects[data.type] > data.valueBig) {
                 report += data.textBig + "\n";

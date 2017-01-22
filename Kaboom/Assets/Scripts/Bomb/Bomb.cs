@@ -22,7 +22,7 @@ public enum EffectScale {
 public class Bomb : MonoBehaviour {
 
     public List<BombIngredient> bombIngredients = new List<BombIngredient>();
-
+    public List<EffectData> effectDataList = new List<EffectData>();
     static public Bomb instance = null;
   
 
@@ -57,6 +57,28 @@ public class Bomb : MonoBehaviour {
         }
 
         return allEffects;
+    }
+
+    public Dictionary<EffectType, EffectScale> GetAllFinalEffectsAndScales() {
+        Dictionary<EffectType, EffectScale> allFinalEffectsScales = new Dictionary<EffectType, EffectScale>();
+        Dictionary<EffectType, int> allFinalEffects = GetAllFinalEffects();
+        
+        foreach (EffectData data in effectDataList) {
+            // Scale: big
+            if (allFinalEffects[data.type] > data.valueBig) {
+                allFinalEffectsScales[data.type] = EffectScale.Big;
+            }
+            // Scale: small
+            else if (allFinalEffects[data.type] > data.valueSmall) {
+                allFinalEffectsScales[data.type] = EffectScale.Small;
+            }
+            // scale: none
+            else {
+                allFinalEffectsScales[data.type] = EffectScale.None;
+            }
+        }
+
+        return allFinalEffectsScales;
     }
 
     public int GetTotalCost() {

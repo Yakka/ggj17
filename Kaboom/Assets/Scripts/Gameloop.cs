@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,12 +10,15 @@ public class Gameloop : MonoBehaviour {
 	public enum GameState {
         BombMaking,
         BombTesting,
+        MissionReport,
         Length
     };
 
     public GameState state = GameState.BombMaking;
     public int money = 100;
     public Bomb bomb;
+    public List<MissionData> missionDataList = new List<MissionData>();
+    private int playerProgression = 0;
     private float timer = 0f;
     private bool isChangingState = false;
 
@@ -36,7 +40,6 @@ public class Gameloop : MonoBehaviour {
                 SceneManager.LoadScene(1);
             }
         }
-        
     }
 
     public void NextGameState() {
@@ -48,11 +51,24 @@ public class Gameloop : MonoBehaviour {
                 isChangingState = true;
                 break;
             case GameState.BombTesting:
-                state = GameState.BombMaking;
+                if(IsMissionAccomplished()) {
+                    state = GameState.MissionReport;
+                } else {
+                    state = GameState.BombMaking;
+                }
                 SceneManager.LoadScene(0);
                 break;
         }
     }
 
-    
+    public bool IsMissionAccomplished() {
+        bool accomplished = true;
+        Dictionary<EffectType, EffectScale> effectsScale = bomb.GetAllFinalEffectsAndScales();
+        foreach (MissionData.Goal goal in missionDataList[playerProgression].goals) {
+            if (effectsScale[goal.type] != goal.scale) {
+                accomplished = false;
+            }
+        }
+        return accomplished;
+    }
 }
