@@ -18,6 +18,10 @@ public class LaunchButton : MonoBehaviour {
     }
 
     void LaunchButtonClick() {
+        Dictionary<EffectType, EffectScale> effects = Bomb.instance.GetAllFinalEffectsAndScales();
+        for (int i = 0; i < effects.Keys.Count; i++) {
+            Gameloop.instance.report += Bomb.instance.GetEffectReport((EffectType)i, effects[(EffectType)i]);
+        }
         Gameloop.instance.NextGameState();
     }
 

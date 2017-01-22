@@ -45,7 +45,7 @@ public class Gameloop : MonoBehaviour {
             }
         }
         if(Input.anyKey) {
-            if(state == GameState.Reporting || state == GameState.Winning || state == GameState.GameOver) {
+            if(state == GameState.Reporting || state == GameState.Winning || state == GameState.GameOver || state == GameState.BombTesting) {
                 NextGameState();
             }
         }
@@ -74,18 +74,11 @@ public class Gameloop : MonoBehaviour {
                 case GameState.BombTesting:
                     report = string.Empty;
                     firstBomb = false;
-                    state = GameState.Reporting;
-                    Dictionary<EffectType, EffectScale> effects = bomb.GetAllFinalEffectsAndScales();
-                    for (int i = 0; i < effects.Keys.Count; i++) {
-                        report += bomb.GetEffectReport((EffectType)i, effects[(EffectType)i]);
-                    }
-                    SceneManager.LoadScene(4);
-                    break;
-                case GameState.Reporting:
                     if (IsMissionAccomplished()) {
                         playerProgression++;
                         if (playerProgression >= missionDataList.Count) {
                             state = GameState.Winning;
+                            SceneManager.LoadScene(5);
                         }
                         else {
                             money += missionDataList[playerProgression].budget;
@@ -109,6 +102,11 @@ public class Gameloop : MonoBehaviour {
                             SceneManager.LoadScene(3);
                         }
                     }
+                    
+                    SceneManager.LoadScene(3);
+                    break;
+                case GameState.Reporting:
+                    
                     break;
                 case GameState.Winning:
                     state = GameState.BombMaking;
