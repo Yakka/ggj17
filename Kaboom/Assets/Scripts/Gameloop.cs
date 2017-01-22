@@ -10,7 +10,8 @@ public class Gameloop : MonoBehaviour {
 	public enum GameState {
         BombMaking,
         BombTesting,
-        MissionReport,
+        MissionReporting,
+        Winning,
         Length
     };
 
@@ -43,21 +44,33 @@ public class Gameloop : MonoBehaviour {
     }
 
     public void NextGameState() {
-        switch(state) {
-            case GameState.BombMaking:
-                state = GameState.BombTesting;
-                money -= bomb.GetTotalCost();
-                timer = 0.5f;
-                isChangingState = true;
-                break;
-            case GameState.BombTesting:
-                if(IsMissionAccomplished()) {
-                    state = GameState.MissionReport;
-                } else {
+        if(!isChangingState) {
+            switch(state) {
+                case GameState.BombMaking:
+                    state = GameState.BombTesting;
+                    money -= bomb.GetTotalCost();
+                    timer = 0.5f;
+                    isChangingState = true;
+                    break;
+                case GameState.BombTesting:
+                    if(IsMissionAccomplished()) {
+                        playerProgression++;
+                        if(playerProgression >= missionDataList.Count) {
+                            state = GameState.Winning;
+                        } else {
+                            state = GameState.MissionReporting;
+                        }
+                    } else {
+                        state = GameState.BombMaking;
+                    }
+                    SceneManager.LoadScene(0);
+                    break;
+                case GameState.MissionReporting:
                     state = GameState.BombMaking;
-                }
-                SceneManager.LoadScene(0);
-                break;
+                    break;
+                case GameState.Winning:
+                    break;
+            }
         }
     }
 
