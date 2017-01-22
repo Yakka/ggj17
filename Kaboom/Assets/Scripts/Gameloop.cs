@@ -10,6 +10,7 @@ public class Gameloop : MonoBehaviour {
 	public enum GameState {
         BombMaking = 0,
         BombTesting,
+        Reporting,
         Winning,
         GameOver,
         Length
@@ -43,6 +44,11 @@ public class Gameloop : MonoBehaviour {
                 SceneManager.LoadScene(1);
             }
         }
+        if(Input.anyKey) {
+            if(state == GameState.Reporting) {
+                NextGameState();
+            }
+        }
     }
 
     public void RestartGame() {
@@ -66,22 +72,34 @@ public class Gameloop : MonoBehaviour {
                     isChangingState = true;
                     break;
                 case GameState.BombTesting:
-                    firstBomb = false;
                     report = string.Empty;
-                    if(IsMissionAccomplished()) {
+                    firstBomb = false;
+                    state = GameState.Reporting;
+                    Dictionary<EffectType, EffectScale> effects = bomb.GetAllFinalEffectsAndScales();
+                    for (int i = 0; i < effects.Keys.Count; i++) {
+                        report += bomb.GetEffectReport((EffectType)i, effects[(EffectType)i]);
+                    }
+                    SceneManager.LoadScene(4);
+                    break;
+                case GameState.Reporting:
+                    if (IsMissionAccomplished()) {
                         playerProgression++;
-                        if(playerProgression >= missionDataList.Count) {
+                        if (playerProgression >= missionDataList.Count) {
                             state = GameState.Winning;
-                        } else {
+                        }
+                        else {
                             money += missionDataList[playerProgression].budget;
-                            if(money <= 0) {
+                            if (money <= 0) {
                                 state = GameState.GameOver;
                                 SceneManager.LoadScene(2);
-                            } else {
+                            }
+                            else {
                                 state = GameState.BombMaking;
                                 SceneManager.LoadScene(3);
-                            }                        }
-                    } else {
+                            }
+                        }
+                    }
+                    else {
                         if (money <= 0) {
                             state = GameState.GameOver;
                             SceneManager.LoadScene(2);
@@ -109,9 +127,6 @@ public class Gameloop : MonoBehaviour {
             if (effectsScale[goal.type] != goal.scale) {
                 accomplished = false;
             }
-        }
-        foreach(EffectType type in effectsScale.Keys) {
-            report += bomb.GetEffectReport(type, effectsScale[type]);
         }
         return accomplished;
     }
