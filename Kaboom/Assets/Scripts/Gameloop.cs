@@ -45,7 +45,7 @@ public class Gameloop : MonoBehaviour {
             }
         }
         if(Input.anyKey) {
-            if(state == GameState.Reporting) {
+            if(state == GameState.Reporting || state == GameState.Winning || state == GameState.GameOver) {
                 NextGameState();
             }
         }
@@ -111,6 +111,8 @@ public class Gameloop : MonoBehaviour {
                     }
                     break;
                 case GameState.Winning:
+                    state = GameState.BombMaking;
+                    RestartGame();
                     break;
                 case GameState.GameOver:
                     state = GameState.BombMaking;
