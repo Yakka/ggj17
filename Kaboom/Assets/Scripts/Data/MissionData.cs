@@ -6,7 +6,7 @@ public class MissionData : ScriptableObject {
     [System.Serializable]
     public struct Goal { public EffectType type; public EffectScale scale; }
 	public int budget = 0;
-    public string name = string.Empty;
+    new public string name = string.Empty;
     [TextArea(3,10)]
     public string briefing = string.Empty;
 

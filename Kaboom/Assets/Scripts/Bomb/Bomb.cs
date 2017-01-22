@@ -102,4 +102,51 @@ public class Bomb : MonoBehaviour {
         }
         return "No text found.\n";
     }
+
+    public Color GetColor() {
+        float intensity = 0f;
+        Color color = new Color(0, 0, 0);
+
+        foreach(BombIngredient ingredient in Bomb.instance.bombIngredients) {
+            float quantity = ingredient.GetGameplayQuantity() * 0.5f;
+            intensity += quantity;
+
+            switch(ingredient.ingredientData.name)
+            {
+                case "Hydrogen" : //Blue
+                    color.b = Mathf.Min(color.b + quantity, 1f);
+                break;
+                case "Uranium" : //Green
+                    color.g = Mathf.Min(color.g + quantity, 1f);
+                break;
+                case "Weight" : //Red
+                    color.r = Mathf.Min(color.r + quantity, 1f);
+                break;
+                case "Altitude" : //Yellow
+                    color.r = Mathf.Min(color.r + quantity * 0.5f, 1f);
+                    color.g = Mathf.Min(color.g + quantity * 0.5f, 1f);
+                break;
+            }
+        }
+
+/*
+        float H;
+        float S;
+        float V;
+
+        Color.RGBToHSV(color, out H, out S, out V);
+
+        S = Mathf.Min(intensity * 0.5f, 1f);
+        V = Mathf.Min(intensity * 0.5f, 1f);
+
+        return Color.HSVToRGB(H, S, V);
+*/
+
+        intensity *= 0.5f;
+        color.b = Mathf.Min(color.b * intensity, 1f);
+        color.g = Mathf.Min(color.g * intensity, 1f);
+        color.r = Mathf.Min(color.r * intensity, 1f);
+
+        return color;
+    }
 }
