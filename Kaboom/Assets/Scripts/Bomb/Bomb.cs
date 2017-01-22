@@ -61,11 +61,11 @@ public class Bomb : MonoBehaviour {
         
         foreach (EffectData data in effectDataList) {
             // Scale: big
-            if (allFinalEffects[data.type] > data.valueBig) {
+            if (allFinalEffects[data.type] >= data.valueBig) {
                 allFinalEffectsScales[data.type] = EffectScale.Big;
             }
             // Scale: small
-            else if (allFinalEffects[data.type] > data.valueSmall) {
+            else if (allFinalEffects[data.type] >= data.valueSmall) {
                 allFinalEffectsScales[data.type] = EffectScale.Small;
             }
             // scale: none
