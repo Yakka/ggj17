@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ColorBomb : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+    new private SpriteRenderer renderer;
+    
+    public void Start() {
+        renderer = GetComponent<SpriteRenderer>();
+    }
+
+	public void UpdateColor(){
+		Color color = Bomb.instance.GetColor();
+        renderer.color = color;
 	}
 }

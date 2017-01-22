@@ -142,10 +142,11 @@ public class Bomb : MonoBehaviour {
         return Color.HSVToRGB(H, S, V);
 */
 
-        intensity *= 0.5f;
-        color.b = Mathf.Min(color.b * intensity, 1f);
-        color.g = Mathf.Min(color.g * intensity, 1f);
-        color.r = Mathf.Min(color.r * intensity, 1f);
+        float min = 0.25f;
+        intensity = Mathf.Clamp(intensity * 0.5f, 0f, 1f);
+        color.b = Mathf.Min(color.b * intensity + min, 1f);
+        color.g = Mathf.Min(color.g * intensity + min, 1f);
+        color.r = Mathf.Min(color.r * intensity + min, 1f);
 
         return color;
     }
