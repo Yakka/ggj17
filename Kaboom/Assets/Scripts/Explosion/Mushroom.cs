@@ -7,10 +7,14 @@ using UnityEngine.SceneManagement;
 public class Mushroom : MonoBehaviour {
 
     private AudioSource audioSource;
+    new private SpriteRenderer renderer;
     
     public void Start() {
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
+
+        renderer = GetComponent<SpriteRenderer>();
+        renderer.color = Bomb.instance.GetColor();
     }
 
     public void SpecialEffects() {
