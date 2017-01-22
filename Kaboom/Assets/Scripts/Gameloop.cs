@@ -19,7 +19,7 @@ public class Gameloop : MonoBehaviour {
     public int money = 100;
     public Bomb bomb;
     public List<MissionData> missionDataList = new List<MissionData>();
-    private int playerProgression = 0;
+    public int playerProgression = 0;
     private float timer = 0f;
     private bool isChangingState = false;
 
