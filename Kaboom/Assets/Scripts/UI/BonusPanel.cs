@@ -13,6 +13,6 @@ public class BonusPanel : MonoBehaviour {
     }
 
 	void Update() {
-        moneyPanel.text = "<color=#7F4040>Reward:</color> " + Gameloop.instance.missionDataList[Gameloop.instance.playerProgression].budget.ToString()+ "$";
+        moneyPanel.text = "<color=#7F4040>Reward:</color> " + Gameloop.instance.missionDataList[Gameloop.instance.playerProgression].budget.ToString()+ "m$";
     }
 }

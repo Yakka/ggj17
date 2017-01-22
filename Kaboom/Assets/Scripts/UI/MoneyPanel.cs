@@ -13,6 +13,6 @@ public class MoneyPanel : MonoBehaviour {
     }
 
 	void Update() {
-        moneyPanel.text = "<color=#7F4040>Current money:</color> <size=36>" + Gameloop.instance.money.ToString() + "$ </size>";
+        moneyPanel.text = "<color=#7F4040>Current money:</color> <size=36>" + Gameloop.instance.money.ToString() + "m$ </size>";
     }
 }
