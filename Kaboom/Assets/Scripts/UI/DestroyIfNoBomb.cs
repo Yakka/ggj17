@@ -11,7 +11,7 @@ public class DestroyIfNoBomb : MonoBehaviour {
 				noBomb = false;
 		}
 
-		if(destroyIfNoBomb == noBomb)
+		if(destroyIfNoBomb != noBomb)
 			Destroy(gameObject);
 	}
 }
