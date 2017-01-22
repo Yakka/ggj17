@@ -6,6 +6,7 @@ public class MissionData : ScriptableObject {
     [System.Serializable]
     public struct Goal { public EffectType type; public EffectScale scale; }
 	public int budget = 0;
+    public string name = string.Empty;
     public string briefing = string.Empty;
 
     public List<Goal> goals = new List<Goal>();
