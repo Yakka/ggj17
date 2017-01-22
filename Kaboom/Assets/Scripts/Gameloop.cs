@@ -8,9 +8,10 @@ public class Gameloop : MonoBehaviour {
     static public Gameloop instance = null;
 
 	public enum GameState {
-        BombMaking,
+        BombMaking = 0,
         BombTesting,
         Winning,
+        GameOver,
         Length
     };
 
@@ -44,6 +45,17 @@ public class Gameloop : MonoBehaviour {
         }
     }
 
+    public void RestartGame() {
+        money = 100;
+        playerProgression = 0;
+        firstBomb = true;
+        report = string.Empty;
+        foreach(BombIngredient ingredient in bomb.bombIngredients) {
+            ingredient.SetGameplayQuantity(0);
+        }
+        SceneManager.LoadScene(0);
+}
+
     public void NextGameState() {
         if(!isChangingState) {
             switch(state) {
@@ -62,12 +74,23 @@ public class Gameloop : MonoBehaviour {
                             state = GameState.Winning;
                         } else {
                             money += missionDataList[playerProgression].budget;
-                            state = GameState.BombMaking;
-                        }
+                            if(money <= 0) {
+                                state = GameState.GameOver;
+                                SceneManager.LoadScene(2);
+                            } else {
+                                state = GameState.BombMaking;
+                                SceneManager.LoadScene(0);
+                            }                        }
                     } else {
-                        state = GameState.BombMaking;
+                        if (money <= 0) {
+                            state = GameState.GameOver;
+                            SceneManager.LoadScene(2);
+                        }
+                        else {
+                            state = GameState.BombMaking;
+                            SceneManager.LoadScene(0);
+                        }
                     }
-                    SceneManager.LoadScene(0);
                     break;
                 case GameState.Winning:
                     break;

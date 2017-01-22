@@ -10,11 +10,15 @@ public class LaunchButton : MonoBehaviour {
     
 	void Start () {
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => Gameloop.instance.NextGameState());
+        button.onClick.AddListener(() => LaunchButtonClick());
 	}
 
     void Destroy() {
         button.onClick.RemoveListener(() => Gameloop.instance.NextGameState());
+    }
+
+    void LaunchButtonClick() {
+        Gameloop.instance.NextGameState();
     }
 
 }
