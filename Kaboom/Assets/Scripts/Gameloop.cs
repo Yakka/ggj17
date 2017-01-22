@@ -79,7 +79,7 @@ public class Gameloop : MonoBehaviour {
                                 SceneManager.LoadScene(2);
                             } else {
                                 state = GameState.BombMaking;
-                                SceneManager.LoadScene(0);
+                                SceneManager.LoadScene(3);
                             }                        }
                     } else {
                         if (money <= 0) {
@@ -88,11 +88,15 @@ public class Gameloop : MonoBehaviour {
                         }
                         else {
                             state = GameState.BombMaking;
-                            SceneManager.LoadScene(0);
+                            SceneManager.LoadScene(3);
                         }
                     }
                     break;
                 case GameState.Winning:
+                    break;
+                case GameState.GameOver:
+                    state = GameState.BombMaking;
+                    RestartGame();
                     break;
             }
         }

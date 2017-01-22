@@ -18,6 +18,6 @@ public class CostPanel : MonoBehaviour {
     }
 
     private string GeneratePanelText(int cost) {
-        return cost + "$";
+        return cost + "m$";
     }
 }

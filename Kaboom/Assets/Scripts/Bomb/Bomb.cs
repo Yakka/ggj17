@@ -78,7 +78,7 @@ public class Bomb : MonoBehaviour {
     }
 
     public int GetTotalCost() {
-        int value = 0;
+        int value = 20;
         foreach(BombIngredient ingredient in bombIngredients) {
             value += ingredient.GetCost();
         }
