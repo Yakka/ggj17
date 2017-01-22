@@ -11,6 +11,9 @@ public class ReportGenerator : MonoBehaviour {
 
     public void Start() {
         textUI = GetComponent<Text>();
+        if (!Gameloop.instance.firstBomb) {
+            textUI.text = GenerateReport();
+        }
     }
 
     private string GenerateReport() {
@@ -32,9 +35,6 @@ public class ReportGenerator : MonoBehaviour {
         }
         return report;
     }
-
-    public void UpdateReport() {
-        textUI.text = GenerateReport();
-    }
+    
 	
 }

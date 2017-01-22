@@ -22,6 +22,7 @@ public class Gameloop : MonoBehaviour {
     public int playerProgression = 0;
     private float timer = 0f;
     private bool isChangingState = false;
+    public bool firstBomb = true;
 
     void Awake() {
         if(instance == null) {
@@ -53,6 +54,7 @@ public class Gameloop : MonoBehaviour {
                     isChangingState = true;
                     break;
                 case GameState.BombTesting:
+                    firstBomb = false;
                     if(IsMissionAccomplished()) {
                         playerProgression++;
                         if(playerProgression >= missionDataList.Count) {
