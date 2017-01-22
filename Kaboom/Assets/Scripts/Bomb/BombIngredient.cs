@@ -29,19 +29,19 @@ public class BombIngredient : MonoBehaviour {
     }
 
     public int GetFinalEffectValue(EffectType _type) {
-        int factor = effectsDictionary[_type].reversed ? -1 : 1;
-        int effectValue = effectsDictionary[_type].valuePerUnit * quantity * factor + effectsDictionary[_type].baseValue;
+        int effectValue = 0;
+        foreach (IngredientData.Effect effect in ingredientData.effectsList) {
+            if(effect.type == _type) {
+                int factor = effect.reversed ? -1 : 1;
+                effectValue = effect.valuePerUnit * quantity * factor + effect.baseValue;
+                break;
+            }
+        }
         return effectValue;
     }
 
     public List<EffectType> GetAllTypes() {
-        List<EffectType> typesList = new List<EffectType>();
-        foreach(IngredientData.Effect effect in ingredientData.effectsList) {
-            if(!typesList.Contains(effect.type)) {
-                typesList.Add(effect.type);
-            }
-        }
-        return typesList;
+        return new List<EffectType>(effectsDictionary.Keys);
     }
 
     public int GetCost() {

@@ -22,6 +22,7 @@ public class Gameloop : MonoBehaviour {
     private float timer = 0f;
     private bool isChangingState = false;
     public bool firstBomb = true;
+    public string report = string.Empty;
 
     void Awake() {
         if(instance == null) {
@@ -54,6 +55,7 @@ public class Gameloop : MonoBehaviour {
                     break;
                 case GameState.BombTesting:
                     firstBomb = false;
+                    report = string.Empty;
                     if(IsMissionAccomplished()) {
                         playerProgression++;
                         if(playerProgression >= missionDataList.Count) {
@@ -80,6 +82,9 @@ public class Gameloop : MonoBehaviour {
             if (effectsScale[goal.type] != goal.scale) {
                 accomplished = false;
             }
+        }
+        foreach(EffectType type in effectsScale.Keys) {
+            report += bomb.GetEffectReport(type, effectsScale[type]);
         }
         return accomplished;
     }

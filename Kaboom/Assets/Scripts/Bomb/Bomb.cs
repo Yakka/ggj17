@@ -37,7 +37,6 @@ public class Bomb : MonoBehaviour {
 
     void Start() {
         bombIngredients.AddRange(GetComponentsInChildren<BombIngredient>());
-        Debug.Log("p");
     }
     
     public Dictionary<EffectType, int> GetAllFinalEffects() {
@@ -84,5 +83,23 @@ public class Bomb : MonoBehaviour {
             value += ingredient.GetCost();
         }
         return value;
+    }
+
+    public string GetEffectReport(EffectType _type, EffectScale _scale) {
+        foreach(EffectData effect in effectDataList) {
+            if(effect.type == _type) {
+                switch(_scale) {
+                    case EffectScale.None:
+                        return effect.textNone + "\n";
+                    case EffectScale.Small:
+                        return effect.textSmall + "\n";
+                    case EffectScale.Big:
+                        return effect.textBig+"\n";
+                    default:
+                        return "No text found.\n";
+                }
+            }
+        }
+        return "No text found.\n";
     }
 }
