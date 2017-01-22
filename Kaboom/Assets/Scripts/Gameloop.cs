@@ -86,6 +86,7 @@ public class Gameloop : MonoBehaviour {
                         playerProgression++;
                         if (playerProgression >= missionDataList.Count) {
                             state = GameState.Winning;
+                            SceneManager.LoadScene(5);
                         }
                         else {
                             money += missionDataList[playerProgression].budget;
