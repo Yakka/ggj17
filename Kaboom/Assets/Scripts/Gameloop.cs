@@ -44,7 +44,10 @@ public class Gameloop : MonoBehaviour {
                 SceneManager.LoadScene(1);
             }
         }
-        if(Input.anyKey) {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+        else if(Input.anyKey) {
             if(state == GameState.Reporting || state == GameState.Winning || state == GameState.GameOver || state == GameState.BombTesting) {
                 NextGameState();
             }
