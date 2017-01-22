@@ -102,8 +102,6 @@ public class Gameloop : MonoBehaviour {
                             SceneManager.LoadScene(3);
                         }
                     }
-                    
-                    SceneManager.LoadScene(3);
                     break;
                 case GameState.Reporting:
                     
