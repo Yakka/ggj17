@@ -94,6 +94,10 @@ public class Gameloop : MonoBehaviour {
                     break;
                 case GameState.Winning:
                     break;
+                case GameState.GameOver:
+                    state = GameState.BombMaking;
+                    RestartGame();
+                    break;
             }
         }
     }
