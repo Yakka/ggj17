@@ -10,7 +10,6 @@ public class Gameloop : MonoBehaviour {
 	public enum GameState {
         BombMaking,
         BombTesting,
-        MissionReporting,
         Winning,
         Length
     };
@@ -60,15 +59,12 @@ public class Gameloop : MonoBehaviour {
                         if(playerProgression >= missionDataList.Count) {
                             state = GameState.Winning;
                         } else {
-                            state = GameState.MissionReporting;
+                            state = GameState.BombMaking;
                         }
                     } else {
                         state = GameState.BombMaking;
                     }
                     SceneManager.LoadScene(0);
-                    break;
-                case GameState.MissionReporting:
-                    state = GameState.BombMaking;
                     break;
                 case GameState.Winning:
                     break;
