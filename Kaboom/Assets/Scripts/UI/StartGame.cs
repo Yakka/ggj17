@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour {
 
 	public void Stater() {
-        if(Gameloop.instance != null) {
-            Gameloop.instance.NextGameState();
-        }
         SceneManager.LoadScene(3);
     }
 }
